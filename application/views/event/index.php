@@ -154,6 +154,9 @@
         <h4 class="modal-title">View Event</h4>
       </div>
       <div class="modal-body">
+      		<div clas="row">
+      			<h4 class="modal-title event_title"></h4>
+      		</div>
 			<div clas="row">
 				<table class="table table-bordered table-responsive" style="margin-top: 20px;">
 					<thead>
@@ -265,7 +268,7 @@
 							$('.alert-success').html('Event '+type+' successfully').fadeIn().delay(4000).fadeOut('slow');
 							showAllEvent();
 						}else{
-							alert('Error');
+							alert('Please Edit at least one details');
 						}
 					},
 					error: function(){
@@ -278,6 +281,9 @@
 		//edit
 		$('#showdata').on('click', '.item-view', function(){
 			var id = $(this).attr('data');
+			var eventtitle = $(this).attr('title');
+			$('.event_title').html(eventtitle);
+
 			$('#vieweventModal').modal('show');
 			$.ajax({
 				type: 'ajax',
@@ -405,7 +411,7 @@
 									'<td>'+data[i].ev_start_dt+' To '+data[i].ev_end_dt+'</td>'+ev_recurrance+
 
 									'<td>'+
-										'<a style="margin:3px;" href="javascript:;" class="btn btn-success item-view" data="'+data[i].ev_id+'">View</a>'+
+										'<a style="margin:3px;" href="javascript:;" class="btn btn-success item-view" title="'+data[i].ev_title+'" data="'+data[i].ev_id+'">View</a>'+
 										'<a style="margin:3px;" href="javascript:;" class="btn btn-info item-edit" data="'+data[i].ev_id+'">Edit</a>'+
 										'<a style="margin:3px;" href="javascript:;" class="btn btn-danger item-delete" data="'+data[i].ev_id+'">Delete</a>'+
 									'</td>'+
